@@ -1,0 +1,26 @@
+<html>
+<style>
+body {
+  margin: 0;
+}
+  #counter {
+    background: rgb(225, 86, 86);
+  }
+</style>
+<div id="counter" style="height: 100%; width: 100%"></div>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script>
+var i = 60;
+window.setInterval(function(){
+  if (i == 0) {
+    i = 60;
+    speechSynthesis.cancel();
+    var utterance = new SpeechSynthesisUtterance('Time over');
+    utterance.lang = 'de-DE';
+
+    window.speechSynthesis.speak(utterance);
+  }
+  $('#counter').css('height', i/60*100 + '%');
+  i--;
+}, 1000);
+</script>
